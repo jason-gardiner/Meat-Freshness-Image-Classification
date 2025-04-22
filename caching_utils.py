@@ -25,7 +25,7 @@ def save_feature_to_cache(name: str, data: np.ndarray, cache_dir: str=CACHE_DIR)
     target = os.path.join(os.path.abspath(cache_dir), name)
 
     df = pd.DataFrame(data)
-    df.to_csv(target)
+    df.to_csv(target, index=False)
 
 def attempt_load_dataframe(name: str, cache_dir: str=CACHE_DIR) -> tuple[pd.DataFrame, bool]:
     ensure_cache_dir_exists(cache_dir)
@@ -43,4 +43,4 @@ def save_dataframe_to_cache(name: str, df: pd.DataFrame, cache_dir: str=CACHE_DI
     
     target = os.path.join(os.path.abspath(cache_dir), name + ".csv")
 
-    df.to_csv(target)
+    df.to_csv(target, index=False)
