@@ -26,3 +26,21 @@ def save_feature_to_cache(name: str, data: np.ndarray, cache_dir: str=CACHE_DIR)
 
     df = pd.DataFrame(data)
     df.to_csv(target)
+
+def attempt_load_dataframe(name: str, cache_dir: str=CACHE_DIR) -> tuple[pd.DataFrame, bool]:
+    ensure_cache_dir_exists(cache_dir)
+
+    target = os.path.join(os.path.abspath(cache_dir), name + ".csv")
+
+    if os.path.isfile(target):
+        df = pd.read_csv(target)
+        return (df, True)
+    else:
+        return (None, False)
+    
+def save_dataframe_to_cache(name: str, df: pd.DataFrame, cache_dir: str=CACHE_DIR) -> None:
+    ensure_cache_dir_exists(cache_dir)
+    
+    target = os.path.join(os.path.abspath(cache_dir), name + ".csv")
+
+    df.to_csv(target)
