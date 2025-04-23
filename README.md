@@ -1,1 +1,1 @@
-# Banana-Ripeness-Image-Classification
+# Meat Freshness Image Classification
